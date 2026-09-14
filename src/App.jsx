@@ -12,22 +12,22 @@ import Sellitems from "./pages/sellitems.jsx";
 function App() {
   return (
     <BrowserRouter>
-
-      <ScrollToTop />
-
-      <Navbar />
-
       <NavigationHistoryProvider>
+
+        <ScrollToTop />
+
+        <Navbar />
+
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/browse" element={<Browse />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/sellitems" element={<Sellitems />} />
         </Routes>
+
+        <Footer />
+
       </NavigationHistoryProvider>
-
-      <Footer />
-
     </BrowserRouter>
   )
 }

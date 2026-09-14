@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop.jsx";
+import Navbar from "./components/Navbar.jsx";
 import Footer from "./components/Footer.jsx";
 import { NavigationHistoryProvider } from "./Context/NavigationHistory.jsx";
 
@@ -14,7 +15,7 @@ function App() {
 
       <ScrollToTop />
 
-      <Navigation />
+      <Navbar />
 
       <NavigationHistoryProvider>
         <Routes>

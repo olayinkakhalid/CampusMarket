@@ -5,7 +5,7 @@ import message from '../assets/message-circle.png'
 import bell from '../assets/bell.png'
 import { GraduationCap, Search, Menu, X } from 'lucide-react';
 
-const Navigation = () => {
+const Navbar = () => {
 
     const [menuOpen, setMenuOpen] = useState(false)
     const [search, setSearch] = useState('')
@@ -187,4 +187,4 @@ const Navigation = () => {
     )
 }
 
-export default Navigation
+export default Navbar

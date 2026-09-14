@@ -6,7 +6,6 @@ import Home from "../src/Pages/home.jsx";
 import Browse from "../src/Pages/browse.jsx";
 import Categories from "../src/Pages/categories.jsx";
 import Sellitems from "../src/Pages/sellitems.jsx";
-import { NavigationHistoryProvider } from "../src/context/NavigationHistory.jsx";
 
 function App() {
   return (

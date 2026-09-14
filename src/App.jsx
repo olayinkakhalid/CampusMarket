@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Navigation from '../src/components/Navigation.jsx';
+import { NavigationHistoryProvider } from "./context/NavigationHistory.jsx";
 import ScrollToTop from '../src/components/ScrollToTop.jsx';
 import Footer from "../src/components/Footer.jsx";
 import Home from "../src/Pages/home.jsx";

@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { NavigationHistoryProvider } from "./context/NavigationHistory.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import Footer from "./components/Footer.jsx";
+import { NavigationHistoryProvider } from "./Context/NavigationHistory.jsx";
 
-import Home from "./pages/Home.jsx";
-import Browse from "./pages/Browse.jsx";
+import Home from "./pages/home.jsx";
+import Browse from "./pages/browse.jsx";
 import Categories from "./pages/categories.jsx";
 import Sellitems from "./pages/sellitems.jsx";
 

@@ -3,10 +3,10 @@ import { NavigationHistoryProvider } from "./context/NavigationHistory.jsx";
 import ScrollToTop from "./components/ScrollToTop.jsx";
 import Footer from "./components/Footer.jsx";
 
-import Home from "./Pages/home.jsx";
-import Browse from "./Pages/browse.jsx";
-import Categories from "./Pages/categories.jsx";
-import Sellitems from "./Pages/sellitems.jsx";
+import Home from "./pages/Home.jsx";
+import Browse from "./pages/Browse.jsx";
+import Categories from "./pages/categories.jsx";
+import Sellitems from "./pages/sellitems.jsx";
 
 function App() {
   return (

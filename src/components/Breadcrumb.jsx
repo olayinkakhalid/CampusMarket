@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import next from '../assets/next.png'
-import { useNavigationHistory } from '../context/NavigationHistory.jsx'
+import { useNavigationHistory } from '../Context/NavigationHistory.jsx'
 
 const Breadcrumb = () => {
   const { previousPage, currentPage } = useNavigationHistory()

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Breadcrumb from '../components/Breadcrumb.jsx'
 import { Search } from 'lucide-react';
+import { Link } from 'react-router-dom'
 import OrganicChemistry from '../assets/OrganicChemistry.jpg'
 import calculus from '../assets/calculus.jpg'
 import Microeconomic from '../assets/Microeconomic.jpg'
@@ -125,8 +126,8 @@ const categories = () => {
             const Icon = category.icon;
 
             return (
-              <div
-                key={category.id}
+              <Link
+                to={`/product/${add.id}`}
                 className="bg-white rounded-xl p-5 cursor-pointer hover:bg-gray-100 transition-all duration-300"
               >
 
@@ -150,7 +151,7 @@ const categories = () => {
 
                 </div>
 
-              </div>
+              </Link>
             );
           })}
 

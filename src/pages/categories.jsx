@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from "react";
 import Breadcrumb from '../components/Breadcrumb.jsx'
 import { Search } from 'lucide-react';
 import OrganicChemistry from '../assets/OrganicChemistry.jpg'
@@ -15,14 +15,15 @@ import {
   Dumbbell,
   Ticket,
   Lamp,
-  MapPin
+  MapPin,
+  ArrowUp
 } from "lucide-react";
 
 const featuredMateria = [
-  { id: 1, Image: OrganicChemistry, title: 'Organic Chemistry, 9th edition', cost: '$32', tag: 'Best value', min: '5h ago' },
+  { id: 5, Image: OrganicChemistry, title: 'Organic Chemistry, 9th edition', cost: '$32', tag: 'Best value', min: '5h ago' },
   { id: 2, Image: calculus, title: 'Calculus: Early Transcendentals, 8th ed.', cost: '$38', tag: 'Best Value', min: '2h ago' },
-  { id: 3, Image: Microeconomic, title: 'Microeconomics, 3rd edition', cost: '$24', tag: 'Best value', min: '1d ago' },
-  { id: 4, Image: Statistics, title: 'Statistics for Engineers, 4th ed.', cost: '$27', tag: 'New', min: '8h ago' }
+  { id: 18, Image: Microeconomic, title: 'Microeconomics, 3rd edition', cost: '$24', tag: 'Best value', min: '1d ago' },
+  { id: 6, Image: Statistics, title: 'Statistics for Engineers, 4th ed.', cost: '$27', tag: 'New', min: '8h ago' }
 ];
 
 const Allcategories = [
@@ -38,6 +39,19 @@ const Allcategories = [
 
 
 const categories = () => {
+
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div>
@@ -218,8 +232,8 @@ const categories = () => {
 
                   <p
                     className={`absolute top-3 left-3 px-2 py-1 text-xs rounded-lg ${item.tag === "New"
-                        ? "bg-[#F7E3E0] text-[#C4574C]"
-                        : "bg-[#E4F0E7] text-[#4E8F63]"
+                      ? "bg-[#F7E3E0] text-[#C4574C]"
+                      : "bg-[#E4F0E7] text-[#4E8F63]"
                       }`}
                   >
                     {item.tag}
@@ -254,6 +268,29 @@ const categories = () => {
         </div>
 
       </div>
+
+      {showScrollTop && (
+
+        <button
+          onClick={() =>
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            })
+          }
+          className="cursor-pointer group fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full border border-white/40 bg-white/30 backdrop-blur-xl shadow-lg shadow-black/10 px-3 py-3 text-[#2C2C2C] transition-all duration-300 hover:px-5 hover:bg-white/50 hover:-translate-y-1"
+        >
+
+          <ArrowUp className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+
+          <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-medium opacity-0 transition-all duration-300 group-hover:max-w-[80px] group-hover:opacity-100">
+            Back to top
+          </span>
+
+        </button>
+
+      )}
+
 
     </div>
   )

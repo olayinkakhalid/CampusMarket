@@ -60,30 +60,30 @@ const categories = [
 
 
 const featuredMateria = [
-    { id: 1, Image: lampwithdesk, title: 'IKEA desk lamp with warm LED bulb', cost: '$16', tag: 'like now', location: 'Priya S. · Riverside Apts · 0.8 mi' },
+    { id: 3, Image: lampwithdesk, title: 'IKEA desk lamp with warm LED bulb', cost: '$16', tag: 'like now', location: 'Priya S. · Riverside Apts · 0.8 mi' },
     { id: 2, Image: calculus, title: 'Calculus: Early Transcendentals, 8th edition', cost: '$38', tag: 'Like now', location: 'Ava C. · North Dorms · 0.3 mi' },
-    { id: 3, Image: airpord, title: 'AirPods Pro (2nd gen) with charging case', cost: '$139', tag: 'Used · Good', location: 'Marcus L. · West Hall · 0.5 mi' },
+    { id: 1, Image: airpord, title: 'AirPods Pro (2nd gen) with charging case', cost: '$139', tag: 'Used · Good', location: 'Marcus L. · West Hall · 0.5 mi' },
     { id: 4, Image: bicycle, title: 'Trek hybrid bike, tuned for campus riding', cost: '$185', tag: 'Used · Good', location: 'Jonah R. · South Quad · 1.1 mi' }
 ];
 
 
 const RecentlyAdded = [
-    { id: 1, Image: MiniFridge, title: 'Mini fridge, 3.2 cu ft with freezer', cost: '$65', min: '4h ago', tag: 'New' },
-    { id: 2, Image: NoiseCanceling, title: 'Noise-cancelling over-ear headphones', cost: '$95', min: '6h ago', tag: 'New' },
-    { id: 3, Image: StudioSpeaker, title: 'Studio monitor speakers, pair', cost: '$140', min: '2d ago', tag: '2d' },
-    { id: 4, Image: OrganicChemistry, title: 'Organic chemistry model kit, 240 pieces', cost: '$22', min: '2h ago', tag: 'New' },
-    { id: 5, Image: GrahpicalCal, title: 'TI-84 Plus graphing calculator', cost: '$40', min: '1d ago', tag: '1d' },
-    { id: 6, Image: Coat, title: 'Winter parka, size M, navy', cost: '$35', min: '12h ago', tag: 'New' },
-    { id: 7, Image: DeskSetup, title: 'Standing desk converter, dual monitor', cost: '$48', min: '9h ago', tag: 'New' },
-    { id: 8, Image: GrayBedcover, title: 'Twin XL bedding set, grey', cost: '$25', min: '1d ago', tag: '1d' }
+    { id: 9, Image: MiniFridge, title: 'Mini fridge, 3.2 cu ft with freezer', cost: '$65', min: '4h ago', tag: 'New' },
+    { id: 10, Image: NoiseCanceling, title: 'Noise-cancelling over-ear headphones', cost: '$95', min: '6h ago', tag: 'New' },
+    { id: 11, Image: StudioSpeaker, title: 'Studio monitor speakers, pair', cost: '$140', min: '2d ago', tag: '2d' },
+    { id: 5, Image: OrganicChemistry, title: 'Organic chemistry model kit, 240 pieces', cost: '$22', min: '2h ago', tag: 'New' },
+    { id: 12, Image: GrahpicalCal, title: 'TI-84 Plus graphing calculator', cost: '$40', min: '1d ago', tag: '1d' },
+    { id: 13, Image: Coat, title: 'Winter parka, size M, navy', cost: '$35', min: '12h ago', tag: 'New' },
+    { id: 14, Image: DeskSetup, title: 'Standing desk converter, dual monitor', cost: '$48', min: '9h ago', tag: 'New' },
+    { id: 15, Image: GrayBedcover, title: 'Twin XL bedding set, grey', cost: '$25', min: '1d ago', tag: '1d' }
 ];
 
 
 const NearbyListing = [
     { id: 1, Image: Chair, title: 'IKEA desk chair, adjustable height', address: 'West Hall · 0.2 mi · posted 3h ago', cost: '$28', time: '4 min walk' },
-    { id: 2, Image: Skateboard, title: 'Skateboard, barely used', address: 'North Dorms · 0.3 mi · posted 5h ago', cost: '$45', time: '5 min walk' },
-    { id: 3, Image: SteamedDish, title: 'Rice cooker with steamer basket', address: 'Riverside Apts · 0.6 mi · posted yesterday', cost: '$18', time: '9 min walk' },
-    { id: 4, Image: DrawerStorage, title: 'Desk organizer set with drawer', address: 'South Quad · 0.9 mi · posted 2d ago', cost: '$12', time: '12 min walk' }
+    { id: 16, Image: Skateboard, title: 'Skateboard, barely used', address: 'North Dorms · 0.3 mi · posted 5h ago', cost: '$45', time: '5 min walk' },
+    { id: 17, Image: SteamedDish, title: 'Rice cooker with steamer basket', address: 'Riverside Apts · 0.6 mi · posted yesterday', cost: '$18', time: '9 min walk' },
+    { id: 18, Image: DrawerStorage, title: 'Desk organizer set with drawer', address: 'South Quad · 0.9 mi · posted 2d ago', cost: '$12', time: '12 min walk' }
 ];
 
 
@@ -358,7 +358,8 @@ const home = () => {
                     {featuredMateria.map((item) => {
 
                         return (
-                            <div
+                            <Link
+                                to={`/product/${item.id}`}
                                 key={item.id}
                                 className='rounded-xl border border-[#E5E5E5] cursor-pointer hover:bg-gray-100 transition-all duration-300'
                             >
@@ -401,7 +402,7 @@ const home = () => {
 
                                 </div>
 
-                            </div>
+                            </Link>
                         );
 
                     })}
@@ -440,7 +441,8 @@ const home = () => {
                     {RecentlyAdded.map((add) => {
 
                         return (
-                            <div
+                            <Link
+                                to={`/product/${add.id}`}
                                 key={add.id}
                                 className='bg-[#FFFFFF] pb-3 rounded-xl border border-[#E5E5E5] cursor-pointer hover:bg-[#FAF8F4] transition-all duration-300'
                             >
@@ -483,7 +485,7 @@ const home = () => {
 
                                 </div>
 
-                            </div>
+                            </Link>
                         );
 
                     })}

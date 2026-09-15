@@ -8,6 +8,7 @@ import Home from "./pages/home.jsx";
 import Browse from "./pages/browse.jsx";
 import Categories from "./pages/categories.jsx";
 import Sellitems from "./pages/sellitems.jsx";
+import ProductDetails from './pages/productdetails.jsx'
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/browse" element={<Browse />} />
           <Route path="/categories" element={<Categories />} />
           <Route path="/sellitems" element={<Sellitems />} />
+          <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
 
         <Footer />

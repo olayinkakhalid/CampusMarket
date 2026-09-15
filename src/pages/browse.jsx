@@ -1,7 +1,7 @@
-import React from 'react'
+import { useEffect, useState } from "react";
 import arrowDown from '../assets/chevron-down.png'
 import Breadcrumb from '../components/Breadcrumb.jsx'
-import { X, LayoutGrid, SlidersHorizontal, ArrowUpDown, Search } from 'lucide-react';
+import { X, LayoutGrid, SlidersHorizontal, ArrowUpDown, Search, ArrowUp } from 'lucide-react';
 import MiniFridge from '../assets/MiniFridge.jpg'
 import NoiseCanceling from '../assets/NoiseCanceling.jpg'
 import StudioSpeaker from '../assets/StudioSpeaker.jpg'
@@ -12,17 +12,30 @@ import DeskSetup from '../assets/DeskSetup.jpg'
 import GrayBedcover from '../assets/GrayBedcover.jpg'
 
 const RecentlyAdded = [
-  { id: 1, Image: MiniFridge, title: 'Mini fridge, 3.2 cu ft with freezer', cost: '$65', min: '4h ago', tag: 'New' },
-  { id: 2, Image: NoiseCanceling, title: 'Noise-cancelling over-ear headphones', cost: '$95', min: '6h ago', tag: 'New' },
-  { id: 3, Image: StudioSpeaker, title: 'Studio monitor speakers, pair', cost: '$140', min: '2d ago', tag: '2d' },
-  { id: 4, Image: OrganicChemistry, title: 'Organic chemistry model kit, 240 pieces', cost: '$22', min: '2h ago', tag: 'New' },
-  { id: 5, Image: GrahpicalCal, title: 'TI-84 Plus graphing calculator', cost: '$40', min: '1d ago', tag: '1d' },
-  { id: 6, Image: Coat, title: 'Winter parka, size M, navy', cost: '$35', min: '12h ago', tag: 'New' },
-  { id: 7, Image: DeskSetup, title: 'Standing desk converter, dual monitor', cost: '$48', min: '9h ago', tag: 'New' },
-  { id: 8, Image: GrayBedcover, title: 'Twin XL bedding set, grey', cost: '$25', min: '1d ago', tag: '1d' }
+  { id: 9, Image: MiniFridge, title: 'Mini fridge, 3.2 cu ft with freezer', cost: '$65', min: '4h ago', tag: 'New' },
+  { id: 10, Image: NoiseCanceling, title: 'Noise-cancelling over-ear headphones', cost: '$95', min: '6h ago', tag: 'New' },
+  { id: 11, Image: StudioSpeaker, title: 'Studio monitor speakers, pair', cost: '$140', min: '2d ago', tag: '2d' },
+  { id: 5, Image: OrganicChemistry, title: 'Organic chemistry model kit, 240 pieces', cost: '$22', min: '2h ago', tag: 'New' },
+  { id: 12, Image: GrahpicalCal, title: 'TI-84 Plus graphing calculator', cost: '$40', min: '1d ago', tag: '1d' },
+  { id: 13, Image: Coat, title: 'Winter parka, size M, navy', cost: '$35', min: '12h ago', tag: 'New' },
+  { id: 14, Image: DeskSetup, title: 'Standing desk converter, dual monitor', cost: '$48', min: '9h ago', tag: 'New' },
+  { id: 15, Image: GrayBedcover, title: 'Twin XL bedding set, grey', cost: '$25', min: '1d ago', tag: '1d' }
 ];
 
 const Browse = () => {
+
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 100);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <div>
@@ -195,7 +208,7 @@ const Browse = () => {
             </p>
           </div>
 
-          <div className='flex items-center gap-1 bg-[#FFFFFF] px-2 py-2 rounded-lg cursor-pointer border border-[#E5E2DC]'>
+          <div className='flex items-center gap-1 bg-[#FFFFFF] px-3 py-2 rounded-lg cursor-pointer border border-[#E5E2DC]'>
             <LayoutGrid className='w-3' />
 
             <p className='text-[#2C2C2C] text-sm'>
@@ -272,6 +285,29 @@ const Browse = () => {
         </div>
 
       </div>
+
+      {showScrollTop && (
+
+        <button
+          onClick={() =>
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth"
+            })
+          }
+          className="cursor-pointer group fixed bottom-6 right-6 z-50 flex items-center gap-2 rounded-full border border-white/40 bg-white/30 backdrop-blur-xl shadow-lg shadow-black/10 px-3 py-3 text-[#2C2C2C] transition-all duration-300 hover:px-5 hover:bg-white/50 hover:-translate-y-1"
+        >
+
+          <ArrowUp className="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5" />
+
+          <span className="max-w-0 overflow-hidden whitespace-nowrap text-sm font-medium opacity-0 transition-all duration-300 group-hover:max-w-[80px] group-hover:opacity-100">
+            Back to top
+          </span>
+
+        </button>
+
+      )}
+
 
     </div>
   )

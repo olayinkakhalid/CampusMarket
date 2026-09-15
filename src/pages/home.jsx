@@ -527,7 +527,7 @@ const home = () => {
 
                             return (
                                 <Link
-                                    to={`/product/${add.id}`}
+                                    to={`/product/${nearby.id}`}
                                     className="border border-[#E5E2DC] bg-[#F5F2EC] rounded-xl p-2 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
                                 >
 

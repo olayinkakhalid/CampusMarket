@@ -126,8 +126,8 @@ const categories = () => {
             const Icon = category.icon;
 
             return (
-              <Link
-                to={`/product/${category.id}`}
+              <div
+                key={category.id}
                 className="bg-white rounded-xl p-5 cursor-pointer hover:bg-gray-100 transition-all duration-300"
               >
 
@@ -151,7 +151,7 @@ const categories = () => {
 
                 </div>
 
-              </Link>
+              </div>
             );
           })}
 
@@ -218,8 +218,8 @@ const categories = () => {
           {featuredMateria.map((item) => {
 
             return (
-              <div
-                key={item.id}
+              <Link
+                to={`/product/${category.id}`}
                 className='bg-[#FFFFFF] rounded-xl border border-[#E5E2DC] cursor-pointer hover:bg-gray-100 transition-all duration-300'
               >
 
@@ -262,7 +262,7 @@ const categories = () => {
 
                 </div>
 
-              </div>
+              </Link>
             );
           })}
 

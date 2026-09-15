@@ -127,7 +127,7 @@ const categories = () => {
 
             return (
               <Link
-                to={`/product/${add.id}`}
+                to={`/product/${category.id}`}
                 className="bg-white rounded-xl p-5 cursor-pointer hover:bg-gray-100 transition-all duration-300"
               >
 

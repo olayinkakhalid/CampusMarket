@@ -526,8 +526,8 @@ const home = () => {
                         {NearbyListing.map((nearby) => {
 
                             return (
-                                <div
-                                    key={nearby.id}
+                                <Link
+                                    to={`/product/${add.id}`}
                                     className="border border-[#E5E2DC] bg-[#F5F2EC] rounded-xl p-2 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
                                 >
 
@@ -570,7 +570,7 @@ const home = () => {
 
                                     </div>
 
-                                </div>
+                                </Link>
                             );
 
                         })}

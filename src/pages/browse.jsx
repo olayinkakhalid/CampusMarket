@@ -225,8 +225,8 @@ const Browse = () => {
             {RecentlyAdded.map((add) => {
 
               return (
-                <div
-                  key={add.id}
+                <Link
+                  to={`/product/${add.id}`}
                   className='bg-[#FFFFFF] pb-3 rounded-xl border border-[#E5E5E5] cursor-pointer hover:bg-[#FAF8F4] transition-all duration-300'
                 >
 
@@ -262,7 +262,7 @@ const Browse = () => {
 
                   </div>
 
-                </div>
+                </Link>
               );
             })}
 

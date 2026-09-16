@@ -1,6 +1,6 @@
 import React, { useRef, useState } from 'react'
 import Breadcrumb from '../components/Breadcrumb.jsx'
-import { ImagePlus, ChevronDown, MapPin, Clock } from "lucide-react"
+import { ImagePlus, ChevronDown, MapPin, Clock, Sparkles, Check, Plus } from "lucide-react"
 
 const sellitems = () => {
 
@@ -317,8 +317,8 @@ const sellitems = () => {
                                   setShowCategory(false)
                                 }}
                                 className={`px-3 py-2.5 rounded-lg text-sm cursor-pointer transition-colors ${category === item
-                                    ? "bg-[#F5F2EC] text-[#C67A52]"
-                                    : "text-[#2C2C2C] hover:bg-[#F5F2EC] hover:text-[#C67A52]"
+                                  ? "bg-[#F5F2EC] text-[#C67A52]"
+                                  : "text-[#2C2C2C] hover:bg-[#F5F2EC] hover:text-[#C67A52]"
                                   }`}
                               >
                                 {item}
@@ -379,8 +379,8 @@ const sellitems = () => {
                                 setShowCondition(false)
                               }}
                               className={`px-3 py-2.5 rounded-lg text-sm cursor-pointer transition-colors ${condition === item.name
-                                  ? "bg-[#F5F2EC] text-[#C67A52]"
-                                  : "text-[#2C2C2C] hover:bg-[#F5F2EC] hover:text-[#C67A52]"
+                                ? "bg-[#F5F2EC] text-[#C67A52]"
+                                : "text-[#2C2C2C] hover:bg-[#F5F2EC] hover:text-[#C67A52]"
                                 }`}
                             >
 
@@ -447,8 +447,8 @@ const sellitems = () => {
                     <button
                       onClick={() => setPriceType("firm")}
                       className={`px-3 py-2 rounded-lg cursor-pointer text-xs border ${priceType === "firm"
-                          ? "bg-[#F5F2EC] text-[#A86540] border-[#C67A52]"
-                          : "bg-[#F5F2EC] text-[#6B6B6B] border-[#E5E2DC]"
+                        ? "bg-[#F5F2EC] text-[#A86540] border-[#C67A52]"
+                        : "bg-[#F5F2EC] text-[#6B6B6B] border-[#E5E2DC]"
                         }`}
                     >
                       Firm price
@@ -457,8 +457,8 @@ const sellitems = () => {
                     <button
                       onClick={() => setPriceType("offers")}
                       className={`px-3 py-2 rounded-lg cursor-pointer text-xs border ${priceType === "offers"
-                          ? "bg-[#F7E7DE] text-[#A85F3B] border-[#C67A52]"
-                          : "bg-[#F7E7DE] text-[#A85F3B] border-transparent"
+                        ? "bg-[#F7E7DE] text-[#A85F3B] border-[#C67A52]"
+                        : "bg-[#F7E7DE] text-[#A85F3B] border-transparent"
                         }`}
                     >
                       Open to offers
@@ -519,72 +519,77 @@ const sellitems = () => {
             </div>
 
 
-            {/* ================= LISTING PREVIEW ================= */}
-            <div className="lg:sticky lg:top-24">
-
-              <div className="px-5 sm:px-6 py-6 bg-[#FFFFFF] border border-[#E5E2DC] rounded-xl">
-
-                <p className="text-[#2C2C2C] text-lg sm:text-xl font-bold">
-                  Listing preview
-                </p>
-
-                <p className="text-[#9A9A9A] text-xs mt-1">
-                  Exactly how buyers see it in Browse
-                </p>
+            <div>
 
 
-                {/* IMAGE */}
-                {images.length > 0 && (
+              {/* ================= LISTING PREVIEW ================= */}
+              <div>
 
-                  <div className="mt-4">
+                <div className="px-5 sm:px-6 py-6 bg-[#FFFFFF] border border-[#E5E2DC] rounded-xl">
 
-                    <img
-                      src={URL.createObjectURL(images[0])}
-                      alt="Listing preview"
-                      className="w-full h-40 sm:h-44 object-cover rounded-t-xl"
-                    />
+                  <p className="text-[#2C2C2C] text-lg sm:text-xl font-bold">
+                    Listing preview
+                  </p>
 
-                  </div>
-
-                )}
+                  <p className="text-[#9A9A9A] text-xs mt-1">
+                    Exactly how buyers see it in Browse
+                  </p>
 
 
-                {/* INFO UNDER IMAGE */}
-                <div className={`w-full border border-[#E5E2DC] ${images.length > 0
+                  {/* IMAGE */}
+                  {images.length > 0 && (
+
+                    <div className="mt-4">
+
+                      <img
+                        src={URL.createObjectURL(images[0])}
+                        alt="Listing preview"
+                        className="w-full h-40 sm:h-44 object-cover rounded-t-xl"
+                      />
+
+                    </div>
+
+                  )}
+
+
+                  {/* INFO UNDER IMAGE */}
+                  <div className={`w-full border border-[#E5E2DC] ${images.length > 0
                     ? "border-t-0 rounded-b-xl"
                     : "rounded-xl mt-4"
-                  } bg-[#FFFFFF] px-4 py-4`}>
+                    } bg-[#FFFFFF] px-4 py-4`}>
 
 
-                  {/* TITLE */}
-                  <div className="text-[#2C2C2C] text-sm font-medium min-h-5 break-words">
+                    {/* TITLE */}
+                    <div className="text-[#2C2C2C] text-sm font-medium min-h-5 break-words">
 
-                    {title || "Your listing title"}
+                      {title || "Your listing title"}
 
-                  </div>
-
-
-                  {/* PRICE + DETAILS */}
-                  <div className="flex justify-between items-start gap-3 mt-2">
-
-                    <div className="text-[#2C2C2C] font-bold text-lg">
-                      {price ? `$${price}` : "$0.00"}
                     </div>
 
 
-                    <div className="text-[#9A9A9A] text-xs text-right min-w-0">
+                    {/* PRICE + DETAILS */}
+                    <div className="flex justify-between items-start gap-3 mt-2">
 
-                      <div>
-                        {condition || "Condition"}
+                      <div className="text-[#2C2C2C] font-bold text-lg">
+                        {price ? `$${price}` : "$0.00"}
                       </div>
 
-                      <div className="mt-1 flex items-center justify-end gap-1">
 
-                        <MapPin className="w-3 h-3 shrink-0" />
+                      <div className="text-[#9A9A9A] text-xs text-right min-w-0">
 
-                        <span className="truncate">
-                          {pickupLocation || "Pickup location"}
-                        </span>
+                        <div>
+                          {condition || "Condition"}
+                        </div>
+
+                        <div className="mt-1 flex items-center justify-end gap-1">
+
+                          <MapPin className="w-3 h-3 shrink-0" />
+
+                          <span className="truncate">
+                            {pickupLocation || "Pickup location"}
+                          </span>
+
+                        </div>
 
                       </div>
 
@@ -595,6 +600,55 @@ const sellitems = () => {
                 </div>
 
               </div>
+
+              <div className='px-5 py-6 bg-[#F7E7DE] mt-5 rounded-xl flex flex-col gap-2'>
+                <div className='flex gap-1 items-center'>
+                  <Sparkles className='h-4 text-[#A85F3B]' />
+
+                  <p className='text-[#2C2C2C] font-bold text-sm'>
+                    Tips for a fast sale
+                  </p>
+                </div>
+
+                <div className='flex gap-1 items-center'>
+                  <Check className='h-4 text-[#A85F3B]' />
+
+                  <p className='text-[#6B6B6B] text-xs'>
+                    Bright, clear photos sell three times faster
+                  </p>
+                </div>
+
+                <div className='flex gap-1 items-center'>
+                  <Check className='h-4 text-[#A85F3B]' />
+
+                  <p className='text-[#6B6B6B] text-xs'>
+                    Price within 10% of similar campus listings
+                  </p>
+                </div>
+
+                <div className='flex gap-1 items-center'>
+                  <Check className='h-4 text-[#A85F3B]' />
+
+                  <p className='text-[#6B6B6B] text-xs'>
+                    Reply within the hour to keep buyers interested
+                  </p>
+                </div>
+              </div>
+
+              <div className='mt-5 flex flex-col gap-3'>
+                <button className='flex gap-[1px] w-full h-11 justify-center text-sm bg-[#C67A52] hover:bg-[#A86540] rounded-lg cursor-pointer items-center text-[#FFFFFF] transition-colors duration-200'>
+                  <Plus className='h-4' />
+                  Publish listing
+                </button>
+
+                <button className='flex gap-[1px] w-full h-11 justify-center text-sm bg-[#FFFFFF] hover:bg-[#F5F2EC] border border-[#D0CCC4] rounded-lg cursor-pointer items-center text-[#2C2C2C] transition-colors duration-200'>
+                  Save as draft
+                </button>
+              </div>
+
+              <p className='text-xs text-[#9A9A9A] mt-3'>
+                You can edit, mark as sold or remove your listing at any time.
+              </p>
 
             </div>
 

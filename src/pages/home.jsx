@@ -20,7 +20,7 @@ import Coat from '../assets/Coat.jpg'
 import DeskSetup from '../assets/DeskSetup.jpg'
 import GrayBedcover from '../assets/GrayBedcover.jpg'
 import { ShieldCheck } from 'lucide-react';
-import Chair from '../assets/Chair.jpg'
+import Chair from '../assets/lampwithdesk1.jpg'
 import SteamedDish from '../assets/SteamedDish.jpg'
 import CampusView from '../assets/CampusView.jpg'
 import Skateboard from '../assets/Skateboard.jpg'
@@ -80,7 +80,7 @@ const RecentlyAdded = [
 
 
 const NearbyListing = [
-    { id: 1, Image: Chair, title: 'IKEA desk chair, adjustable height', address: 'West Hall · 0.2 mi · posted 3h ago', cost: '$28', time: '4 min walk' },
+    { id: 3, Image: Chair, title: 'IKEA desk chair, adjustable height', address: 'West Hall · 0.2 mi · posted 3h ago', cost: '$28', time: '4 min walk' },
     { id: 16, Image: Skateboard, title: 'Skateboard, barely used', address: 'North Dorms · 0.3 mi · posted 5h ago', cost: '$45', time: '5 min walk' },
     { id: 17, Image: SteamedDish, title: 'Rice cooker with steamer basket', address: 'Riverside Apts · 0.6 mi · posted yesterday', cost: '$18', time: '9 min walk' },
     { id: 18, Image: DrawerStorage, title: 'Desk organizer set with drawer', address: 'South Quad · 0.9 mi · posted 2d ago', cost: '$12', time: '12 min walk' }
@@ -444,7 +444,7 @@ const home = () => {
                             <Link
                                 to={`/product/${add.id}`}
                                 key={add.id}
-                                className='bg-[#FFFFFF] pb-3 rounded-xl border border-[#E5E5E5] cursor-pointer hover:bg-[#FAF8F4] transition-all duration-300'
+                                className='w-full bg-[#FFFFFF] pb-3 rounded-xl border border-[#E5E5E5] cursor-pointer hover:bg-[#FAF8F4] transition-all duration-300'
                             >
 
                                 <div className='relative'>
@@ -528,7 +528,7 @@ const home = () => {
                             return (
                                 <Link
                                     to={`/product/${nearby.id}`}
-                                    className="border border-[#E5E2DC] bg-[#F5F2EC] rounded-xl p-2 cursor-pointer transition-all duration-300 hover:-translate-y-1 hover:shadow-md"
+                                    className="block border border-[#E5E2DC] bg-[#F5F2EC] rounded-xl p-3 cursor-pointer transition-all duration-300 hover:bg-[#EEEAE2] hover:-translate-y-1 hover:shadow-md"
                                 >
 
                                     <div className="flex gap-3 sm:gap-4 items-center">

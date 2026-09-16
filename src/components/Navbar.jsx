@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import AuthRequiredCard from '../components/AuthRequiredCard.jsx'
 import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import fav from '../assets/heart.png'
 import message from '../assets/message-circle.png'
@@ -9,6 +10,7 @@ const Navbar = () => {
 
     const [menuOpen, setMenuOpen] = useState(false)
     const [mobileSearchOpen, setMobileSearchOpen] = useState(false)
+    const [showAuthCard, setShowAuthCard] = useState(false)
 
     const navigate = useNavigate();
     const [searchParams] = useSearchParams();
@@ -62,10 +64,9 @@ const Navbar = () => {
                                         key={link.path}
                                         to={link.path}
                                         className={({ isActive }) =>
-                                            `transition-colors duration-200 cursor-pointer ${
-                                                isActive
-                                                    ? "text-[#C67A52]"
-                                                    : "text-[#2C2C2C] hover:text-[#C67A52]"
+                                            `transition-colors duration-200 cursor-pointer ${isActive
+                                                ? "text-[#C67A52]"
+                                                : "text-[#2C2C2C] hover:text-[#C67A52]"
                                             }`
                                         }
                                     >
@@ -112,33 +113,42 @@ const Navbar = () => {
 
 
                         {/* FAVORITE */}
-                        <div className="hidden md:flex bg-[#F5F2EC] items-center rounded-md px-3 lg:px-4 py-3 cursor-pointer hover:bg-gray-200 transition-all duration-200">
+                        <button
+                            onClick={() => setShowAuthCard(true)}
+                            className="hidden md:flex bg-[#F5F2EC] items-center rounded-md px-3 lg:px-4 py-3 cursor-pointer hover:bg-gray-200 transition-all duration-200"
+                        >
                             <img
                                 className="w-5 h-5"
                                 src={fav}
                                 alt="Favorite"
                             />
-                        </div>
+                        </button>
 
 
                         {/* MESSAGE */}
-                        <div className="hidden md:flex bg-[#F5F2EC] items-center rounded-md px-3 lg:px-4 py-3 cursor-pointer hover:bg-gray-200 transition-all duration-200">
+                        <button
+                            onClick={() => setShowAuthCard(true)}
+                            className="hidden md:flex bg-[#F5F2EC] items-center rounded-md px-3 lg:px-4 py-3 cursor-pointer hover:bg-gray-200 transition-all duration-200"
+                        >
                             <img
                                 className="w-5 h-5"
                                 src={message}
                                 alt="Messages"
                             />
-                        </div>
+                        </button>
 
 
                         {/* NOTIFICATION */}
-                        <div className="hidden sm:flex bg-[#F5F2EC] items-center rounded-md px-3 lg:px-4 py-3 cursor-pointer hover:bg-gray-200 transition-all duration-200">
+                        <button
+                            onClick={() => setShowAuthCard(true)}
+                            className="hidden sm:flex bg-[#F5F2EC] items-center rounded-md px-3 lg:px-4 py-3 cursor-pointer hover:bg-gray-200 transition-all duration-200"
+                        >
                             <img
                                 className="w-5 h-5"
                                 src={bell}
                                 alt="Notifications"
                             />
-                        </div>
+                        </button>
 
 
                         {/* DESKTOP AUTH */}
@@ -174,11 +184,10 @@ const Navbar = () => {
 
                 {/* MOBILE SEARCH FIELD */}
                 <div
-                    className={`sm:hidden overflow-hidden transition-all duration-300 ${
-                        mobileSearchOpen
+                    className={`sm:hidden overflow-hidden transition-all duration-300 ${mobileSearchOpen
                             ? "max-h-20 opacity-100 px-3 pb-3"
                             : "max-h-0 opacity-0 px-3"
-                    }`}
+                        }`}
                 >
                     <div className="bg-[#F5F2EC] flex items-center gap-2 rounded-md px-3 py-3">
 
@@ -201,11 +210,10 @@ const Navbar = () => {
 
             {/* MOBILE MENU */}
             <div
-                className={`lg:hidden fixed inset-0 h-screen w-screen z-40 bg-white/80 backdrop-blur-xl border-t border-[#E5E2DC] shadow-[0_20px_40px_rgba(44,44,44,0.08)] transition-all duration-300 ease-out ${
-                    menuOpen
+                className={`lg:hidden fixed inset-0 h-screen w-screen z-40 bg-white/80 backdrop-blur-xl border-t border-[#E5E2DC] shadow-[0_20px_40px_rgba(44,44,44,0.08)] transition-all duration-300 ease-out ${menuOpen
                         ? "opacity-100 translate-y-0 visible"
                         : "opacity-0 -translate-y-4 invisible"
-                }`}
+                    }`}
             >
                 <div className="flex flex-col gap-2 px-4 pt-[80px] pb-6">
 
@@ -216,10 +224,9 @@ const Navbar = () => {
                             to={link.path}
                             onClick={() => setMenuOpen(false)}
                             className={({ isActive }) =>
-                                `relative flex items-center px-5 py-4 rounded-xl text-base transition-all duration-200 overflow-hidden ${
-                                    isActive
-                                        ? "bg-[#C67A52]/10 text-[#C67A52] font-medium shadow-sm"
-                                        : "text-[#2C2C2C] hover:bg-[#F5F2EC]/60 hover:shadow-sm"
+                                `relative flex items-center px-5 py-4 rounded-xl text-base transition-all duration-200 overflow-hidden ${isActive
+                                    ? "bg-[#C67A52]/10 text-[#C67A52] font-medium shadow-sm"
+                                    : "text-[#2C2C2C] hover:bg-[#F5F2EC]/60 hover:shadow-sm"
                                 }`
                             }
                         >
@@ -242,6 +249,71 @@ const Navbar = () => {
                     ))}
 
 
+                    {/* MOBILE FEATURES */}
+                    <div className="grid grid-cols-3 gap-2 mt-3">
+
+                        {/* FAVORITES */}
+                        <button
+                            onClick={() => {
+                                setShowAuthCard(true)
+                                setMenuOpen(false)
+                            }}
+                            className="flex flex-col items-center justify-center gap-2 bg-[#F5F2EC] rounded-xl py-4 cursor-pointer hover:bg-[#EEEAE2] transition-colors"
+                        >
+                            <img
+                                className="w-5 h-5"
+                                src={fav}
+                                alt="Favorites"
+                            />
+
+                            <span className="text-xs text-[#2C2C2C]">
+                                Favorites
+                            </span>
+                        </button>
+
+
+                        {/* MESSAGES */}
+                        <button
+                            onClick={() => {
+                                setShowAuthCard(true)
+                                setMenuOpen(false)
+                            }}
+                            className="flex flex-col items-center justify-center gap-2 bg-[#F5F2EC] rounded-xl py-4 cursor-pointer hover:bg-[#EEEAE2] transition-colors"
+                        >
+                            <img
+                                className="w-5 h-5"
+                                src={message}
+                                alt="Messages"
+                            />
+
+                            <span className="text-xs text-[#2C2C2C]">
+                                Messages
+                            </span>
+                        </button>
+
+
+                        {/* NOTIFICATIONS */}
+                        <button
+                            onClick={() => {
+                                setShowAuthCard(true)
+                                setMenuOpen(false)
+                            }}
+                            className="flex flex-col items-center justify-center gap-2 bg-[#F5F2EC] rounded-xl py-4 cursor-pointer hover:bg-[#EEEAE2] transition-colors"
+                        >
+                            <img
+                                className="w-5 h-5"
+                                src={bell}
+                                alt="Notifications"
+                            />
+
+                            <span className="text-xs text-[#2C2C2C]">
+                                Notifications
+                            </span>
+                        </button>
+
+                    </div>
+
+
                     {/* MOBILE AUTH */}
                     <div className="mt-4 px-1 flex flex-col gap-3">
 
@@ -257,6 +329,15 @@ const Navbar = () => {
 
                 </div>
             </div>
+
+
+            {/* AUTH CARD */}
+            {showAuthCard && (
+                <AuthRequiredCard
+                    onClose={() => setShowAuthCard(false)}
+                />
+            )}
+
         </>
     )
 }

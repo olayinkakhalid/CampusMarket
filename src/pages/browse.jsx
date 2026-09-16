@@ -151,8 +151,8 @@ const Browse = () => {
 
                   <p
                     className={`px-3 py-2 cursor-pointer rounded-lg text-sm ${sortBy === "newest"
-                        ? "bg-[#F5F2EC] text-[#C67A52]"
-                        : "text-[#2C2C2C] hover:bg-[#F5F2EC]"
+                      ? "bg-[#F5F2EC] text-[#C67A52]"
+                      : "text-[#2C2C2C] hover:bg-[#F5F2EC]"
                       }`}
                     onClick={() => {
                       setSortBy("newest");
@@ -164,8 +164,8 @@ const Browse = () => {
 
                   <p
                     className={`px-3 py-2 cursor-pointer rounded-lg text-sm ${sortBy === "oldest"
-                        ? "bg-[#F5F2EC] text-[#C67A52]"
-                        : "text-[#2C2C2C] hover:bg-[#F5F2EC]"
+                      ? "bg-[#F5F2EC] text-[#C67A52]"
+                      : "text-[#2C2C2C] hover:bg-[#F5F2EC]"
                       }`}
                     onClick={() => {
                       setSortBy("oldest");
@@ -177,8 +177,8 @@ const Browse = () => {
 
                   <p
                     className={`px-3 py-2 cursor-pointer rounded-lg text-sm ${sortBy === "price-low"
-                        ? "bg-[#F5F2EC] text-[#C67A52]"
-                        : "text-[#2C2C2C] hover:bg-[#F5F2EC]"
+                      ? "bg-[#F5F2EC] text-[#C67A52]"
+                      : "text-[#2C2C2C] hover:bg-[#F5F2EC]"
                       }`}
                     onClick={() => {
                       setSortBy("price-low");
@@ -190,8 +190,8 @@ const Browse = () => {
 
                   <p
                     className={`px-3 py-2 cursor-pointer rounded-lg text-sm ${sortBy === "price-high"
-                        ? "bg-[#F5F2EC] text-[#C67A52]"
-                        : "text-[#2C2C2C] hover:bg-[#F5F2EC]"
+                      ? "bg-[#F5F2EC] text-[#C67A52]"
+                      : "text-[#2C2C2C] hover:bg-[#F5F2EC]"
                       }`}
                     onClick={() => {
                       setSortBy("price-high");
@@ -568,24 +568,24 @@ const Browse = () => {
 
             <div
               onClick={() => setViewMode("grid")}
-              className={`flex items-center gap-1 px-3 py-2 rounded-lg cursor-pointer transition-colors duration-200 ${viewMode === "grid"
-                ? "bg-[#F5F2EC] text-[#C67A52]"
-                : "text-[#2C2C2C] hover:bg-[#F5F2EC]"
+              className={`flex items-center gap-2 px-2.5 sm:px-3 py-2 rounded-lg cursor-pointer transition-colors duration-200 ${viewMode === "grid"
+                  ? "bg-[#F5F2EC] text-[#C67A52]"
+                  : "text-[#2C2C2C] hover:bg-[#F5F2EC]"
                 }`}
             >
-              <LayoutGrid className='w-3' />
-              <p className='text-sm'>Grid view</p>
+              <LayoutGrid className='w-4 h-4' />
+              <p className='hidden sm:block text-sm'>Grid view</p>
             </div>
 
             <div
               onClick={() => setViewMode("list")}
-              className={`flex items-center gap-1 px-3 py-2 rounded-lg cursor-pointer transition-colors duration-200 ${viewMode === "list"
-                ? "bg-[#F5F2EC] text-[#C67A52]"
-                : "text-[#2C2C2C] hover:bg-[#F5F2EC]"
+              className={`flex items-center gap-2 px-2.5 sm:px-3 py-2 rounded-lg cursor-pointer transition-colors duration-200 ${viewMode === "list"
+                  ? "bg-[#F5F2EC] text-[#C67A52]"
+                  : "text-[#2C2C2C] hover:bg-[#F5F2EC]"
                 }`}
             >
-              <List className='w-3' />
-              <p className='text-sm'>List view</p>
+              <List className='w-4 h-4' />
+              <p className='hidden sm:block text-sm'>List view</p>
             </div>
 
           </div>
@@ -606,6 +606,7 @@ const Browse = () => {
 
               return (
                 <Link
+                  to={`/product/${add.id}`}
                   className={`bg-[#FFFFFF] rounded-xl border border-[#E5E2DC] cursor-pointer hover:bg-[#FAF8F4] transition-all duration-300 ${viewMode === "list"
                     ? "flex gap-4 p-3 w-full"
                     : "pb-3"
@@ -635,13 +636,13 @@ const Browse = () => {
                   </div>
 
                   <div
-                    className={`px-4 py-3 ${viewMode === "list"
-                      ? "flex-1"
+                    className={` px-4 py-3 ${viewMode === "list"
+                      ? "flex-1 min-w-0"
                       : ""
                       }`}
                   >
 
-                    <p className='font-bold text-sm leading-5 truncate'>
+                    <p className='font-bold text-sm leading-5 truncate '>
                       {add.title}
                     </p>
 

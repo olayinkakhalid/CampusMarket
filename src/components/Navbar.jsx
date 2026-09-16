@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate, useSearchParams } from "react-router-dom";
 import fav from '../assets/heart.png'
 import message from '../assets/message-circle.png'
 import bell from '../assets/bell.png'
@@ -8,7 +8,12 @@ import { GraduationCap, Search, Menu, X } from 'lucide-react';
 const Navbar = () => {
 
     const [menuOpen, setMenuOpen] = useState(false)
-    const [search, setSearch] = useState('')
+    const [mobileSearchOpen, setMobileSearchOpen] = useState(false)
+
+    const navigate = useNavigate();
+    const [searchParams] = useSearchParams();
+
+    const search = searchParams.get("search") || "";
 
     const navLinks = [
         { name: "Home", path: "/" },
@@ -16,6 +21,14 @@ const Navbar = () => {
         { name: "Categories", path: "/categories" },
         { name: "Sell items", path: "/sellitems" }
     ]
+
+    const handleSearch = (value) => {
+        if (value.trim()) {
+            navigate(`/browse?search=${encodeURIComponent(value)}`);
+        } else {
+            navigate('/browse');
+        }
+    };
 
     return (
         <>
@@ -49,9 +62,10 @@ const Navbar = () => {
                                         key={link.path}
                                         to={link.path}
                                         className={({ isActive }) =>
-                                            `transition-colors duration-200 cursor-pointer ${isActive
-                                                ? "text-[#C67A52]"
-                                                : "text-[#2C2C2C] hover:text-[#C67A52]"
+                                            `transition-colors duration-200 cursor-pointer ${
+                                                isActive
+                                                    ? "text-[#C67A52]"
+                                                    : "text-[#2C2C2C] hover:text-[#C67A52]"
                                             }`
                                         }
                                     >
@@ -68,20 +82,33 @@ const Navbar = () => {
                     {/* RIGHT */}
                     <div className="flex items-center gap-1.5 sm:gap-3">
 
-                        {/* SEARCH */}
-                        <div className="bg-[#F5F2EC] flex items-center gap-2 rounded-md px-3 py-[9px]">
+                        {/* DESKTOP SEARCH */}
+                        <div className="hidden sm:flex bg-[#F5F2EC] items-center gap-2 rounded-md px-3 py-[9px]">
 
                             <Search className="text-[#9A9A9A] w-5 h-5 shrink-0" />
 
                             <input
-                                className="hidden sm:block bg-[#F5F2EC] placeholder:text-[#9A9A9A] focus:outline-none w-24 md:w-32 lg:w-40"
+                                className="bg-[#F5F2EC] placeholder:text-[#9A9A9A] focus:outline-none w-24 md:w-32 lg:w-40"
                                 type="text"
                                 placeholder="Search listings"
                                 value={search}
-                                onChange={(e) => setSearch(e.target.value)}
+                                onChange={(e) => handleSearch(e.target.value)}
                             />
 
                         </div>
+
+
+                        {/* MOBILE SEARCH BUTTON */}
+                        <button
+                            onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
+                            className="sm:hidden flex items-center justify-center p-2 rounded-md hover:bg-[#F5F2EC] transition-colors duration-200 cursor-pointer"
+                        >
+                            {mobileSearchOpen ? (
+                                <X className="w-5 h-5 text-[#2C2C2C]" />
+                            ) : (
+                                <Search className="w-5 h-5 text-[#2C2C2C]" />
+                            )}
+                        </button>
 
 
                         {/* FAVORITE */}
@@ -114,21 +141,21 @@ const Navbar = () => {
                         </div>
 
 
-                        {/* AUTH */}
-                        <div className="flex items-center gap-1 sm:gap-2">
+                        {/* DESKTOP AUTH */}
+                        <div className="hidden sm:flex items-center gap-1 sm:gap-2">
 
                             <button className="bg-[#C67A52] text-white font-medium text-xs sm:text-sm py-2 px-3 sm:px-4 rounded-md hover:bg-[#A86540] transition-colors duration-200 cursor-pointer">
                                 Sign In
                             </button>
 
-                            <button className="hidden sm:block text-[#C67A52] font-medium text-xs sm:text-sm py-2 px-3 sm:px-4 rounded-md hover:bg-[#F5F2EC] transition-colors duration-200 cursor-pointer">
+                            <button className="text-[#C67A52] font-medium text-xs sm:text-sm py-2 px-3 sm:px-4 rounded-md hover:bg-[#F5F2EC] transition-colors duration-200 cursor-pointer">
                                 Sign Up
                             </button>
 
                         </div>
 
 
-                        {/* HAMBURGER (Brought to z-50 inside menu scope if needed, or left clean) */}
+                        {/* HAMBURGER */}
                         <button
                             onClick={() => setMenuOpen(!menuOpen)}
                             className="lg:hidden relative z-50 flex items-center justify-center p-2 rounded-md hover:bg-[#F5F2EC] transition-colors duration-200 cursor-pointer"
@@ -143,45 +170,92 @@ const Navbar = () => {
                     </div>
 
                 </div>
+
+
+                {/* MOBILE SEARCH FIELD */}
+                <div
+                    className={`sm:hidden overflow-hidden transition-all duration-300 ${
+                        mobileSearchOpen
+                            ? "max-h-20 opacity-100 px-3 pb-3"
+                            : "max-h-0 opacity-0 px-3"
+                    }`}
+                >
+                    <div className="bg-[#F5F2EC] flex items-center gap-2 rounded-md px-3 py-3">
+
+                        <Search className="text-[#9A9A9A] w-5 h-5 shrink-0" />
+
+                        <input
+                            autoFocus={mobileSearchOpen}
+                            className="bg-[#F5F2EC] placeholder:text-[#9A9A9A] focus:outline-none w-full"
+                            type="text"
+                            placeholder="Search listings"
+                            value={search}
+                            onChange={(e) => handleSearch(e.target.value)}
+                        />
+
+                    </div>
+                </div>
+
             </div>
 
-            {/* MOBILE MENU (EXTRACTED OUTSIDE HEADER WITH HIGHER Z-INDEX) */}
-            <div 
+
+            {/* MOBILE MENU */}
+            <div
                 className={`lg:hidden fixed inset-0 h-screen w-screen z-40 bg-white/80 backdrop-blur-xl border-t border-[#E5E2DC] shadow-[0_20px_40px_rgba(44,44,44,0.08)] transition-all duration-300 ease-out ${
-                    menuOpen 
-                        ? "opacity-100 translate-y-0 visible" 
+                    menuOpen
+                        ? "opacity-100 translate-y-0 visible"
                         : "opacity-0 -translate-y-4 invisible"
                 }`}
-            > 
-                {/* pt-[80px] spaces content nicely below the header layer */}
-                <div className="flex flex-col gap-2 px-4 pt-[80px] pb-6"> 
-                    {navLinks.map((link) => ( 
-                        <NavLink 
-                            key={link.path} 
-                            to={link.path} 
-                            onClick={() => setMenuOpen(false)} 
-                            className={({ isActive }) => 
+            >
+                <div className="flex flex-col gap-2 px-4 pt-[80px] pb-6">
+
+                    {/* NAV LINKS */}
+                    {navLinks.map((link) => (
+                        <NavLink
+                            key={link.path}
+                            to={link.path}
+                            onClick={() => setMenuOpen(false)}
+                            className={({ isActive }) =>
                                 `relative flex items-center px-5 py-4 rounded-xl text-base transition-all duration-200 overflow-hidden ${
-                                    isActive 
-                                        ? "bg-[#C67A52]/10 text-[#C67A52] font-medium shadow-sm" 
-                                        : "text-[#2C2C2C] hover:bg-[#F5F2EC]/60 hover:shadow-sm" 
-                                }` 
-                            } 
-                        > 
-                            {({ isActive }) => ( 
-                                <> 
-                                    {isActive && ( 
-                                        <span className="absolute left-0 top-2 bottom-2 w-1 bg-[#C67A52] rounded-r-full" /> 
-                                    )} 
-                                    <span>{link.name}</span> 
-                                    {isActive && ( 
-                                        <span className="ml-auto text-[#C67A52] text-lg"> → </span> 
-                                    )} 
-                                </> 
-                            )} 
-                        </NavLink> 
-                    ))} 
-                </div> 
+                                    isActive
+                                        ? "bg-[#C67A52]/10 text-[#C67A52] font-medium shadow-sm"
+                                        : "text-[#2C2C2C] hover:bg-[#F5F2EC]/60 hover:shadow-sm"
+                                }`
+                            }
+                        >
+                            {({ isActive }) => (
+                                <>
+                                    {isActive && (
+                                        <span className="absolute left-0 top-2 bottom-2 w-1 bg-[#C67A52] rounded-r-full" />
+                                    )}
+
+                                    <span>{link.name}</span>
+
+                                    {isActive && (
+                                        <span className="ml-auto text-[#C67A52] text-lg">
+                                            →
+                                        </span>
+                                    )}
+                                </>
+                            )}
+                        </NavLink>
+                    ))}
+
+
+                    {/* MOBILE AUTH */}
+                    <div className="mt-4 px-1 flex flex-col gap-3">
+
+                        <button className="bg-[#C67A52] text-white font-medium py-3 rounded-xl hover:bg-[#A86540] transition-colors duration-200 cursor-pointer">
+                            Sign In
+                        </button>
+
+                        <button className="text-[#C67A52] font-medium py-2 cursor-pointer">
+                            Create an account
+                        </button>
+
+                    </div>
+
+                </div>
             </div>
         </>
     )

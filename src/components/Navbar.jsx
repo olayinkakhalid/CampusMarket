@@ -8,6 +8,8 @@ import { GraduationCap, Search, Menu, X } from 'lucide-react';
 
 const Navbar = () => {
 
+
+
     const [menuOpen, setMenuOpen] = useState(false)
     const [mobileSearchOpen, setMobileSearchOpen] = useState(false)
     const [showAuthCard, setShowAuthCard] = useState(false)
@@ -21,7 +23,7 @@ const Navbar = () => {
         { name: "Home", path: "/" },
         { name: "Browse", path: "/browse" },
         { name: "Categories", path: "/categories" },
-        { name: "Sell items", path: "/sellitems" }
+        { name: "Sell items", path: "/sellitems" },
     ]
 
     const handleSearch = (value) => {
@@ -113,20 +115,24 @@ const Navbar = () => {
 
 
                         {/* FAVORITE */}
-                        <button
+                        <NavLink
+                            to="/favorites"
                             onClick={() => setShowAuthCard(true)}
                             className="hidden md:flex bg-[#F5F2EC] items-center rounded-md px-3 lg:px-4 py-3 cursor-pointer hover:bg-gray-200 transition-all duration-200"
                         >
+
                             <img
                                 className="w-5 h-5"
                                 src={fav}
                                 alt="Favorite"
                             />
-                        </button>
+
+                        </NavLink>
 
 
                         {/* MESSAGE */}
-                        <button
+                        <NavLink
+                            to="/messages"
                             onClick={() => setShowAuthCard(true)}
                             className="hidden md:flex bg-[#F5F2EC] items-center rounded-md px-3 lg:px-4 py-3 cursor-pointer hover:bg-gray-200 transition-all duration-200"
                         >
@@ -135,11 +141,12 @@ const Navbar = () => {
                                 src={message}
                                 alt="Messages"
                             />
-                        </button>
+                        </NavLink>
 
 
                         {/* NOTIFICATION */}
-                        <button
+                        <NavLink
+                            to="/notifications"
                             onClick={() => setShowAuthCard(true)}
                             className="hidden sm:flex bg-[#F5F2EC] items-center rounded-md px-3 lg:px-4 py-3 cursor-pointer hover:bg-gray-200 transition-all duration-200"
                         >
@@ -148,7 +155,7 @@ const Navbar = () => {
                                 src={bell}
                                 alt="Notifications"
                             />
-                        </button>
+                        </NavLink>
 
 
                         {/* DESKTOP AUTH */}
@@ -185,8 +192,8 @@ const Navbar = () => {
                 {/* MOBILE SEARCH FIELD */}
                 <div
                     className={`sm:hidden overflow-hidden transition-all duration-300 ${mobileSearchOpen
-                            ? "max-h-20 opacity-100 px-3 pb-3"
-                            : "max-h-0 opacity-0 px-3"
+                        ? "max-h-20 opacity-100 px-3 pb-3"
+                        : "max-h-0 opacity-0 px-3"
                         }`}
                 >
                     <div className="bg-[#F5F2EC] flex items-center gap-2 rounded-md px-3 py-3">
@@ -211,8 +218,8 @@ const Navbar = () => {
             {/* MOBILE MENU */}
             <div
                 className={`lg:hidden fixed inset-0 h-screen w-screen z-40 bg-white/80 backdrop-blur-xl border-t border-[#E5E2DC] shadow-[0_20px_40px_rgba(44,44,44,0.08)] transition-all duration-300 ease-out ${menuOpen
-                        ? "opacity-100 translate-y-0 visible"
-                        : "opacity-0 -translate-y-4 invisible"
+                    ? "opacity-100 translate-y-0 visible"
+                    : "opacity-0 -translate-y-4 invisible"
                     }`}
             >
                 <div className="flex flex-col gap-2 px-4 pt-[80px] pb-6">
@@ -253,7 +260,8 @@ const Navbar = () => {
                     <div className="grid grid-cols-3 gap-2 mt-3">
 
                         {/* FAVORITES */}
-                        <button
+                        <NavLink
+                            to="/favorites"
                             onClick={() => {
                                 setShowAuthCard(true)
                                 setMenuOpen(false)
@@ -269,11 +277,12 @@ const Navbar = () => {
                             <span className="text-xs text-[#2C2C2C]">
                                 Favorites
                             </span>
-                        </button>
+                        </NavLink>
 
 
                         {/* MESSAGES */}
-                        <button
+                        <NavLink
+                            to="/messages"
                             onClick={() => {
                                 setShowAuthCard(true)
                                 setMenuOpen(false)
@@ -289,11 +298,12 @@ const Navbar = () => {
                             <span className="text-xs text-[#2C2C2C]">
                                 Messages
                             </span>
-                        </button>
+                        </NavLink>
 
 
                         {/* NOTIFICATIONS */}
-                        <button
+                        <NavLink
+                            to="/notifications"
                             onClick={() => {
                                 setShowAuthCard(true)
                                 setMenuOpen(false)
@@ -309,7 +319,7 @@ const Navbar = () => {
                             <span className="text-xs text-[#2C2C2C]">
                                 Notifications
                             </span>
-                        </button>
+                        </NavLink>
 
                     </div>
 
@@ -332,11 +342,14 @@ const Navbar = () => {
 
 
             {/* AUTH CARD */}
-            {showAuthCard && (
+            {/* {showAuthCard && (
                 <AuthRequiredCard
-                    onClose={() => setShowAuthCard(false)}
+                    onClose={() => {
+                        setShowAuthCard(false)
+                        navigate('/')
+                    }}
                 />
-            )}
+            )} */}
 
         </>
     )

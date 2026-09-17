@@ -14,6 +14,9 @@ export const NavigationHistoryProvider = ({ children }) => {
     "/browse": "Browse",
     "/categories": "Categories",
     "/sellitems": "Sell items",
+    "/favorites": "Favorites",
+    "/messages": "Message",
+    "/notifications": "Notification",
   }
 
   useEffect(() => {
